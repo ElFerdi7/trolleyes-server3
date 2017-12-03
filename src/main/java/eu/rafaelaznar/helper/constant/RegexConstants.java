@@ -40,5 +40,9 @@ public class RegexConstants {
     public static final String email_Help = "un email válido"; // see \\ is \    
     public static final String capitalizedSentence = "[A-Z]([^\\s]*\\s?)+";
     public static final String capitalizedSentence_Help = "una frase que comienza en mayúscula";
+    public static final String number = "^[0-9]+$";
+    public static final String number_Help = "un número entero";
+    public static final String decimal = "^-*[0-9,\\.]+$";
+    public static final String decimal_Help = "un numero decimal";
 
 }

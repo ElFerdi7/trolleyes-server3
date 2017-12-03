@@ -30,16 +30,64 @@ package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
+import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
+import eu.rafaelaznar.helper.EnumHelper;
+import eu.rafaelaznar.helper.constant.RegexConstants;
 
+@MetaObjectBeanInterface(
+        TableName = "producto",
+        Description = "Productos del sistema",
+        Icon = "fa fa-product-hunt",
+        SqlSelect = "SELECT * FROM producto WHERE 1=1 ",
+        SqlSelectCount = "SELECT COUNT(*) FROM producto WHERE 1=1 ",
+        Type = EnumHelper.SourceType.Table
+)
 public class ProductoSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Codigo",
+            LongName = "Codigo",
+            Description = "Código del producto",
+            Type = EnumHelper.FieldType.String,
+            IsRequired = true,
+            RegexPattern = RegexConstants.capitalizedSentence,
+            RegexHelp = RegexConstants.capitalizedSentence_Help
+    )
     private String codigo;
     @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Descripcion",
+            LongName = "Descripcion",
+            Description = "Descripcion del producto",
+            Type = EnumHelper.FieldType.String,
+            IsRequired = true,
+            RegexPattern = RegexConstants.capitalizedSentence,
+            RegexHelp = RegexConstants.capitalizedSentence_Help
+    )
     private String descripcion;
     @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Existencias",
+            LongName = "Existencias",
+            Description = "Existencias del producto",
+            Type = EnumHelper.FieldType.Integer,
+            IsRequired = true,
+            RegexPattern = RegexConstants.number,
+            RegexHelp = RegexConstants.number_Help
+    )
     private int existencias;
     @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Precio",
+            LongName = "Precio",
+            Description = "Precios del producto",
+            Type = EnumHelper.FieldType.Decimal,
+            IsRequired = true,
+            RegexPattern = RegexConstants.decimal,
+            RegexHelp = RegexConstants.decimal_Help
+    )
     private double precio;
 
     public ProductoSpecificBeanImplementation() {
