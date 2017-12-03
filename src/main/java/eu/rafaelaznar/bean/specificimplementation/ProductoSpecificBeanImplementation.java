@@ -73,9 +73,9 @@ public class ProductoSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Existencias",
             Description = "Existencias del producto",
             Type = EnumHelper.FieldType.Integer,
-            IsRequired = true/*,
+            IsRequired = true,
             RegexPattern = RegexConstants.number,
-            RegexHelp = RegexConstants.number_Help*/
+            RegexHelp = RegexConstants.number_Help
     )
     private int existencias;
     @Expose
@@ -84,9 +84,9 @@ public class ProductoSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Precio",
             Description = "Precios del producto",
             Type = EnumHelper.FieldType.Decimal,
-            IsRequired = true/*,
+            IsRequired = true,
             RegexPattern = RegexConstants.decimal,
-            RegexHelp = RegexConstants.decimal_Help*/
+            RegexHelp = RegexConstants.decimal_Help
     )
     private double precio;
 
