@@ -31,20 +31,61 @@ package eu.rafaelaznar.bean.specificimplementation;
 import com.google.gson.annotations.Expose;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
+import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
+import eu.rafaelaznar.helper.EnumHelper;
 
+@MetaObjectBeanInterface(
+        TableName = "linea_pedido",
+        SingularDescription = "Línea de pedido",
+        PluralDescription = "Líneas de un pedido",
+        Icon = "fa fa-list-ol",
+        SqlSelect = "SELECT * FROM linea_pedido WHERE 1=1 ",
+        SqlSelectCount = "SELECT COUNT(*) FROM linea_pedido WHERE 1=1 ",
+        Type = EnumHelper.SourceType.Table
+)
 public class LineadepedidoSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Cant.",
+            LongName = "Cantidad",
+            Description = "Cantidad de producto pedido",
+            Type = EnumHelper.FieldType.Integer,
+            IsRequired = true,
+            IsForeignKeyDescriptor = true,
+            Wide = 3,
+            MaxLength = 5
+    )
     private Integer cantidad;
 
     @Expose(serialize = false)
+
     private Integer id_pedido = 0;
     @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Pedido",
+            LongName = "Pedido",
+            Description = "Pedido del cliente",
+            Type = EnumHelper.FieldType.ForeignObject,
+            IsRequired = true,
+            References = "pedido",
+            Wide = 4
+    )
     private MetaBeanHelper obj_pedido = null;
 
     @Expose(serialize = false)
     private Integer id_producto = 0;
     @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Producto",
+            LongName = "Producto",
+            Description = "Producto",
+            Type = EnumHelper.FieldType.ForeignObject,
+            IsRequired = true,
+            References = "producto",
+            Wide = 4
+    )
     private MetaBeanHelper obj_producto = null;
 
     public LineadepedidoSpecificBeanImplementation() {

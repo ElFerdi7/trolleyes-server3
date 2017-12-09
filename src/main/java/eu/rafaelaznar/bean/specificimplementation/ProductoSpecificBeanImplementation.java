@@ -37,8 +37,9 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "producto",
-        Description = "Productos del sistema",
-        Icon = "fa fa-product-hunt",
+        SingularDescription = "Productos",
+        PluralDescription = "Producto",
+        Icon = "fa fa-gift",
         SqlSelect = "SELECT * FROM producto WHERE 1=1 ",
         SqlSelectCount = "SELECT COUNT(*) FROM producto WHERE 1=1 ",
         Type = EnumHelper.SourceType.Table
@@ -47,46 +48,54 @@ public class ProductoSpecificBeanImplementation extends TableGenericBeanImplemen
 
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "Codigo",
-            LongName = "Codigo",
+            ShortName = "Cod.",
+            LongName = "Código",
             Description = "Código del producto",
             Type = EnumHelper.FieldType.String,
-            IsRequired = true/*,
-            RegexPattern = RegexConstants.capitalizedSentence,
-            RegexHelp = RegexConstants.capitalizedSentence_Help*/
+            IsRequired = true,
+            RegexPattern = "[^A-Z0-9]",
+            RegexHelp = "letras mayúsculas y números",
+            IsForeignKeyDescriptor = true,
+            MaxLength = 10
     )
     private String codigo;
+
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "Descripcion",
-            LongName = "Descripcion",
-            Description = "Descripcion del producto",
+            ShortName = "Desc.",
+            LongName = "Descripción",
+            Description = "Descripción del producto",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
-            RegexHelp = RegexConstants.capitalizedSentence_Help
+            RegexHelp = RegexConstants.capitalizedSentence_Help,
+            IsForeignKeyDescriptor = true,
+            Wide = 3,
+            MaxLength = 100
     )
     private String descripcion;
+
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "Existencias",
+            ShortName = "Exist.",
             LongName = "Existencias",
-            Description = "Existencias del producto",
+            Description = "Existencias del producto en almacén",
             Type = EnumHelper.FieldType.Integer,
             IsRequired = true,
-            RegexPattern = RegexConstants.number,
-            RegexHelp = RegexConstants.number_Help
+            Wide = 3,
+            MaxLength = 5
     )
     private int existencias;
+
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "Precio",
+            ShortName = "PVP",
             LongName = "Precio",
-            Description = "Precios del producto",
+            Description = "Precio del producto",
             Type = EnumHelper.FieldType.Decimal,
             IsRequired = true,
-            RegexPattern = RegexConstants.decimal,
-            RegexHelp = RegexConstants.decimal_Help
+            Wide = 3,
+            MaxLength = 6
     )
     private double precio;
 
@@ -137,43 +146,4 @@ public class ProductoSpecificBeanImplementation extends TableGenericBeanImplemen
         this.precio = precio;
     }
 
-//    @Override
-//    public String getColumns() {
-//        String strColumns = "";
-//        strColumns += "codigo,";
-//        strColumns += "descripcion,";
-//        strColumns += "existencias,";
-//        strColumns += "precio";
-//        return strColumns;
-//    }
-//
-//    @Override
-//    public String getValues() {
-//        String strColumns = "";
-//        strColumns += id + ",";        
-//        strColumns += EncodingHelper.quotate(codigo) + ",";
-//        strColumns += EncodingHelper.quotate(descripcion) + ",";
-//        strColumns += existencias + ",";
-//        strColumns += precio;
-//        return strColumns;
-//    }
-//
-//    @Override
-//    public String toPairs() {
-//        String strPairs = "";
-//        strPairs += "codigo=" + EncodingHelper.quotate(codigo) + ",";
-//        strPairs += "descripcion=" + EncodingHelper.quotate(descripcion) + ",";
-//        strPairs += "existencias=" + existencias + ",";
-//        strPairs += "precio=" + precio;
-//        return strPairs;
-//    }
-//
-//    @Override
-//    public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, UsuarioSpecificBeanImplementation oPuserBean_security, Integer expand) throws SQLException, Exception {
-//        this.setCodigo(oResultSet.getString("codigo"));
-//        this.setDescripcion(oResultSet.getString("descripcion"));
-//        this.setExistencias(oResultSet.getInt("existencias"));
-//        this.setPrecio(oResultSet.getDouble("precio"));
-//        return this;
-//    }
 }

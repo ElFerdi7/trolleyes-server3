@@ -97,6 +97,7 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
                     oMeta.setDefaultValue(fieldAnnotation.DefaultValue());
                     oMeta.setIsVisible(fieldAnnotation.IsVisible());
                     oMeta.setWide(fieldAnnotation.Wide());
+                    oMeta.setMaxLength(fieldAnnotation.MaxLength());
                     alVector.add(oMeta);
                 }
             }
@@ -110,7 +111,8 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
             if (classAnnotations[i].annotationType().equals(MetaObjectBeanInterface.class)) {
                 MetaObjectBeanInterface fieldAnnotation = (MetaObjectBeanInterface) classAnnotations[i];
                 oMetaObject.setClassName(oClassBEAN.getName());
-                oMetaObject.setDescription(fieldAnnotation.Description());
+                oMetaObject.setSingularDescription(fieldAnnotation.SingularDescription());
+                oMetaObject.setPluralDescription(fieldAnnotation.PluralDescription());
                 oMetaObject.setIcon(fieldAnnotation.Icon());
                 oMetaObject.setTableName(fieldAnnotation.TableName());
                 oMetaObject.setSqlSelect(fieldAnnotation.SqlSelect());

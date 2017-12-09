@@ -39,7 +39,8 @@ import java.util.Date;
 
 @MetaObjectBeanInterface(
         TableName = "usuario",
-        Description = "Usuarios del sistema",
+        SingularDescription = "Usuario",
+        PluralDescription = "Usuarios",
         Icon = "fa fa-user",
         SqlSelect = "SELECT * FROM usuario WHERE 1=1 ",
         SqlSelectCount = "SELECT COUNT(*) FROM usuario WHERE 1=1 ",
@@ -55,7 +56,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.dni,
-            RegexHelp = RegexConstants.dni_Help
+            RegexHelp = RegexConstants.dni_Help,
+            MaxLength = 9
     )
     private String dni;
 
@@ -69,7 +71,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             RegexPattern = RegexConstants.capitalizedName,
             RegexHelp = RegexConstants.capitalizedName_Help,
             IsForeignKeyDescriptor = true,
-            Wide = 3
+            Wide = 3,
+            MaxLength = 100
     )
     private String nombre;
 
@@ -83,7 +86,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             RegexPattern = RegexConstants.capitalizedName,
             RegexHelp = RegexConstants.capitalizedName_Help,
             IsForeignKeyDescriptor = true,
-            Wide = 3
+            Wide = 3,
+            MaxLength = 100
     )
     private String primer_apellido;
 
@@ -97,7 +101,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             RegexPattern = RegexConstants.capitalizedName,
             RegexHelp = RegexConstants.capitalizedName_Help,
             IsForeignKeyDescriptor = true,
-            Wide = 3
+            Wide = 3,
+            MaxLength = 100
     )
     private String segundo_apellido;
 
@@ -109,7 +114,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.nameWithEndingNumbers,
-            RegexHelp = RegexConstants.nameWithEndingNumbers_Help
+            RegexHelp = RegexConstants.nameWithEndingNumbers_Help,
+            MaxLength = 15
     )
     private String login;
 
@@ -124,7 +130,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.email,
-            RegexHelp = RegexConstants.email_Help
+            RegexHelp = RegexConstants.email_Help,
+            MaxLength = 50
     )
     private String email;
 
@@ -134,6 +141,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             LongName = "Fecha de nacimiento",
             Description = "Fecha de nacimiento del usuario",
             Type = EnumHelper.FieldType.Date,
+            RegexHelp = "una fecha correcta",
             IsRequired = true,
             IsVisible = false
     )
@@ -149,7 +157,8 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             Description = "Tipo de usuario",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
-            References = "tipousuario"
+            References = "tipousuario",
+            Wide = 4
     )
     private MetaBeanHelper obj_tipousuario = null;
 
